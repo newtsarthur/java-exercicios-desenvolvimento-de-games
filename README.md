@@ -8,6 +8,14 @@ Este repositório contém 5 jogos desenvolvidos em Java e Processing. Cada jogo 
 
 ### 1. **java-marciano-game** (feito em Java)
    Um jogo simples de ação onde o jogador controla uma nave para derrotar marcianos que caem do céu. O objetivo é destruir os inimigos antes que eles atinjam o chão.
+   (./prints/marciano01.png)
+   (./prints/marciano02.png)
+   (./prints/marciano03.png)
+   (./prints/marciano04.png)
+   (./prints/marciano05.png)
+   (./prints/marciano06.png)
+   (./prints/marciano errando 01.png)
+   (./prints/marciano errando 02.png)
 
 ### 2. **java-velha-game** (feito em Processing)
    Um clássico jogo da velha onde dois jogadores podem competir em uma partida. Foi desenvolvido com a linguagem de programação Processing e possui uma interface gráfica simples e fácil de usar.
