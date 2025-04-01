@@ -1,4 +1,4 @@
-# Arthur Belo da Silva - 01615335
+# Arthur Belo - 01615335
 
 # Jogos em Java e Processing
 
