@@ -1,62 +1,108 @@
-int[][] board = new int[3][3];
-boolean playerTurn = true;
+String[] words = {"banana", "cidade", "computador", "elefante", "guitarra"};
+String word;
+char[] guessed;
+int attemptsLeft = 6;
+ArrayList<Character> wrongGuesses = new ArrayList<>();
+boolean gameOver = false;
+boolean playerWon = false;
 
 void setup() {
-  size(300, 300);
-  resetBoard();
+  size(400, 500);
+  chooseWord();
 }
 
 void draw() {
   background(255);
-  drawBoard();
+  drawWord();
+  drawHangman();
+  drawGuesses();
+  
+  if (gameOver) {
+    textSize(32);
+    fill(255, 0, 0);
+    textAlign(CENTER, CENTER);
+    if (playerWon) {
+      text("Você venceu!", width / 2, height - 50);
+    } else {
+      text("Você perdeu! A palavra era: " + word, width / 2, height - 50);
+    }
+  }
 }
 
-void drawBoard() {
+void chooseWord() {
+  word = words[int(random(words.length))];
+  guessed = new char[word.length()];
+  for (int i = 0; i < guessed.length; i++) {
+    guessed[i] = '_';
+  }
+  attemptsLeft = 6;
+  wrongGuesses.clear();
+  gameOver = false;
+  playerWon = false;
+}
+
+void drawWord() {
+  textSize(32);
+  fill(0);
+  textAlign(CENTER, CENTER);
+  String display = "";
+  for (char c : guessed) {
+    display += c + " ";
+  }
+  text(display, width / 2, 400);
+}
+
+void drawGuesses() {
+  textSize(20);
+  fill(0);
+  text("Erros: " + wrongGuesses.toString(), 20, 450);
+}
+
+void drawHangman() {
   stroke(0);
   strokeWeight(4);
-  for (int i = 1; i < 3; i++) {
-    line(i * 100, 0, i * 100, height);
-    line(0, i * 100, width, i * 100);
+  line(100, 300, 300, 300);
+  line(200, 300, 200, 100);
+  line(200, 100, 250, 100);
+  line(250, 100, 250, 130);
+  
+  if (attemptsLeft < 6) ellipse(250, 150, 40, 40);
+  if (attemptsLeft < 5) line(250, 170, 250, 230);
+  if (attemptsLeft < 4) line(250, 180, 230, 210);
+  if (attemptsLeft < 3) line(250, 180, 270, 210);
+  if (attemptsLeft < 2) line(250, 230, 230, 270);
+  if (attemptsLeft < 1) line(250, 230, 270, 270);
+}
+
+void keyPressed() {
+  if (gameOver) {
+    chooseWord();
+    return;
   }
   
-  for (int i = 0; i < 3; i++) {
-    for (int j = 0; j < 3; j++) {
-      if (board[i][j] == 1) {
-        drawX(i, j);
-      } else if (board[i][j] == 2) {
-        drawO(i, j);
-      }
-    }
-  }
-}
-
-void drawX(int row, int col) {
-  float x = col * 100 + 50;
-  float y = row * 100 + 50;
-  line(x - 25, y - 25, x + 25, y + 25);
-  line(x + 25, y - 25, x - 25, y + 25);
-}
-
-void drawO(int row, int col) {
-  float x = col * 100 + 50;
-  float y = row * 100 + 50;
-  ellipse(x, y, 50, 50);
-}
-
-void mousePressed() {
-  int col = mouseX / 100;
-  int row = mouseY / 100;
+  char guess = key;
+  if (!Character.isLetter(guess)) return;
+  guess = Character.toLowerCase(guess);
   
-  if (board[row][col] == 0) {
-    board[row][col] = playerTurn ? 1 : 2;
-    playerTurn = !playerTurn;
-  }
-}
-
-void resetBoard() {
-  for (int i = 0; i < 3; i++) {
-    for (int j = 0; j < 3; j++) {
-      board[i][j] = 0;
+  boolean found = false;
+  for (int i = 0; i < word.length(); i++) {
+    if (word.charAt(i) == guess) {
+      guessed[i] = guess;
+      found = true;
     }
+  }
+  
+  if (!found && !wrongGuesses.contains(guess)) {
+    wrongGuesses.add(guess);
+    attemptsLeft--;
+  }
+  
+  if (attemptsLeft == 0) {
+    gameOver = true;
+    playerWon = false;
+  }
+  if (new String(guessed).equals(word)) {
+    gameOver = true;
+    playerWon = true;
   }
 }
