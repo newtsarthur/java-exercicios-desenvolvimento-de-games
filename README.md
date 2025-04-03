@@ -9,23 +9,33 @@ Este repositório contém 5 jogos desenvolvidos em Java e Processing. Cada jogo 
 ### 1. **java-marciano-game** (feito em Java)
 Um jogo simples de ação onde o jogador controla uma nave para derrotar marcianos que caem do céu. O objetivo é destruir os inimigos antes que eles atinjam o chão.
 
-![Marciano 1](prints/marciano01.jpg)
-![Marciano 2](prints/marciano04.jpg)
-![Marciano 3](prints/marciano05.jpg)
+![Marciano 01](prints/marciano01.jpg)
+![Marciano Errando 01](prints/marciano%20errando%2001.jpg)
+![Marciano Errando 02](prints/marciano%20errando%2002.jpg)
+![Marciano 03](prints/marciano03.jpg)
+![Marciano 04](prints/marciano04.jpg)
+![Marciano 05](prints/marciano05.jpg)
+![Marciano 06](prints/marciano06.jpg)
 
 ### 2. **java-velha-game** (feito em Processing)
 Um clássico jogo da velha onde dois jogadores podem competir em uma partida. Foi desenvolvido com a linguagem de programação Processing e possui uma interface gráfica simples e fácil de usar.
 
-![Velha 1](prints/velha01.jpg)
-![Velha 2](prints/velha02.jpg)
-![Velha 3](prints/velha03.jpg)
+![Velha 01](prints/velha01.jpg)
+![Velha 02](prints/velha02.jpg)
+![Velha 03](prints/velha03.jpg)
+![Velha IA 01](prints/velhaia01.jpg)
+![Velha IA 02](prints/velhaia02.jpg)
+![Velha IA 03](prints/velhaia03.jpg)
 
 ### 3. **java-forca-game** (feito em Processing)
 Um jogo de forca onde o jogador tenta adivinhar uma palavra, errando letras até perder o jogo. A interface gráfica foi feita usando o Processing.
 
-![Forca 1](prints/forca01.jpg)
-![Forca 2](prints/foca02.jpg)
-![Forca 3](prints/forca03.jpg)
+![Forca 01](prints/forca01.jpg)
+![Forca 02](prints/foca02.jpg)
+![Forca 03](prints/forca03.jpg)
+![Forca 04](prints/forca04.jpg)
+![Forca 05](prints/forca05.jpg)
+![Forca 06](prints/forca06.jpg)
 
 ### 4. **java-pong-game** (feito em Processing)
 A versão clássica do Pong, onde dois jogadores competem para rebater a bola e marcar pontos. Foi desenvolvido no Processing, com controles simples e jogabilidade fluida.
