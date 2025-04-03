@@ -24,7 +24,7 @@ Um clássico jogo da velha onde dois jogadores podem competir em uma partida. Fo
 Um jogo de forca onde o jogador tenta adivinhar uma palavra, errando letras até perder o jogo. A interface gráfica foi feita usando o Processing.
 
 ![Forca 1](prints/forca01.jpg)
-![Forca 2](prints/forca02.jpg)
+![Forca 2](prints/foca02.jpg)
 ![Forca 3](prints/forca03.jpg)
 
 ### 4. **java-pong-game** (feito em Processing)
