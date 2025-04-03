@@ -7,19 +7,31 @@ Este repositório contém 5 jogos desenvolvidos em Java e Processing. Cada jogo 
 ## Jogos:
 
 ### 1. **java-marciano-game** (feito em Java)
-   Um jogo simples de ação onde o jogador controla uma nave para derrotar marcianos que caem do céu. O objetivo é destruir os inimigos antes que eles atinjam o chão.
+Um jogo simples de ação onde o jogador controla uma nave para derrotar marcianos que caem do céu. O objetivo é destruir os inimigos antes que eles atinjam o chão.
+
+![Marciano 1](prints/marciano01.jpg)
+![Marciano 2](prints/marciano04.jpg)
+![Marciano 3](prints/marciano05.jpg)
 
 ### 2. **java-velha-game** (feito em Processing)
-   Um clássico jogo da velha onde dois jogadores podem competir em uma partida. Foi desenvolvido com a linguagem de programação Processing e possui uma interface gráfica simples e fácil de usar.
+Um clássico jogo da velha onde dois jogadores podem competir em uma partida. Foi desenvolvido com a linguagem de programação Processing e possui uma interface gráfica simples e fácil de usar.
+
+![Velha 1](prints/velha01.jpg)
+![Velha 2](prints/velha02.jpg)
+![Velha 3](prints/velha03.jpg)
 
 ### 3. **java-forca-game** (feito em Processing)
-   Um jogo de forca onde o jogador tenta adivinhar uma palavra, errando letras até perder o jogo. A interface gráfica foi feita usando o Processing.
+Um jogo de forca onde o jogador tenta adivinhar uma palavra, errando letras até perder o jogo. A interface gráfica foi feita usando o Processing.
+
+![Forca 1](prints/forca01.jpg)
+![Forca 2](prints/forca02.jpg)
+![Forca 3](prints/forca03.jpg)
 
 ### 4. **java-pong-game** (feito em Processing)
-   A versão clássica do Pong, onde dois jogadores competem para rebater a bola e marcar pontos. Foi desenvolvido no Processing, com controles simples e jogabilidade fluida.
+A versão clássica do Pong, onde dois jogadores competem para rebater a bola e marcar pontos. Foi desenvolvido no Processing, com controles simples e jogabilidade fluida.
 
 ### 5. **java-memoria-game** (feito em Processing)
-   O jogo da memória usando imagens de frutas e animais, onde o objetivo é virar as cartas e encontrar os pares. O jogo foi implementado no Processing e inclui animações e lógica de embaralhamento de cartas.
+O jogo da memória usando imagens de frutas e animais, onde o objetivo é virar as cartas e encontrar os pares. O jogo foi implementado no Processing e inclui animações e lógica de embaralhamento de cartas.
 
 ## Como Executar:
 
@@ -34,5 +46,6 @@ Este repositório contém 5 jogos desenvolvidos em Java e Processing. Cada jogo 
 3. Clique em "Run" para executar o jogo.
 
 ## Tecnologias Usadas:
-- **Java** para o jogo **marciano-game**.
-- **Processing** para os outros jogos (velha, forca, pong, memória).
+* **Java** para o jogo **marciano-game**.
+* **Processing** para os outros jogos (velha, forca, pong, memória).
+
