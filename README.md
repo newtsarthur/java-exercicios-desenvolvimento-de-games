@@ -42,8 +42,28 @@ Um jogo de forca onde o jogador tenta adivinhar uma palavra, errando letras até
 ### 4. **java-pong-game** (feito em Processing)
 A versão clássica do Pong, onde dois jogadores competem para rebater a bola e marcar pontos. Foi desenvolvido no Processing, com controles simples e jogabilidade fluida.
 
+![Pong 01](prints/pong.png)
+![Pong 02](prints/pong1.png)
+![Pong 03](prints/pong2.png)
+![Pong 04](prints/pong3.png)
+![Pong 05](prints/pong4.png)
+![Pong 06](prints/pong5.png)
+![Pong 07](prints/pong6.png)
+
 ### 5. **java-memoria-game** (feito em Processing)
 O jogo da memória usando imagens de frutas e animais, onde o objetivo é virar as cartas e encontrar os pares. O jogo foi implementado no Processing e inclui animações e lógica de embaralhamento de cartas.
+
+![Memoria 01](prints/memory1.png)
+![Memoria 02](prints/memory2.png)
+![Memoria 03](prints/memory3.png)
+![Memoria 04](prints/memory4.png)
+![Memoria 05](prints/memory5.png)
+![Memoria 06](prints/memory6.png)
+![Memoria 07](prints/memory7.png)
+![Memoria 08](prints/memory8.png)
+![Memoria 09](prints/memory9.png)
+
+
 
 ## Como Executar:
 
