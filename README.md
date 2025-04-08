@@ -9,7 +9,7 @@ Este repositório contém 5 jogos desenvolvidos em Java e Processing. Cada jogo 
 ## Jogos:
 
 ### 1. **java-marciano-game** (feito em Java)
-Um jogo simples de ação onde o jogador controla uma nave para derrotar marcianos que caem do céu. O objetivo é destruir os inimigos antes que eles atinjam o chão.
+Um jogo simples de ação onde o jogador deve encontrar o marciano ou a Terra ira explodir.
 
 ![Marciano 01](prints/marciano01.jpg)
 ![Marciano Errando 01](prints/marciano%20errando%2001.jpg)
