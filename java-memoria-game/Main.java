@@ -2,12 +2,11 @@ int cols = 4;
 int rows = 3;
 int totalCards = cols * rows;
 
-// Letras que serão usadas no jogo
 char[][] themes = {
-  {'A', 'B', 'C', 'D', 'E', 'F'}, // Tema 1
-  {'G', 'H', 'I', 'J', 'K', 'L'},  // Tema 2
-  {'M', 'N', 'O', 'P', 'Q', 'R'},  // Tema 3
-  {'S', 'T', 'U', 'V', 'W', 'X'}   // Tema 4
+  {'A', 'B', 'C', 'D', 'E', 'F'},
+  {'G', 'H', 'I', 'J', 'K', 'L'},
+  {'M', 'N', 'O', 'P', 'Q', 'R'},
+  {'S', 'T', 'U', 'V', 'W', 'X'}
 };
 
 char[] currentTheme;
@@ -17,6 +16,7 @@ boolean[] matched;
 int firstSelection = -1;
 int secondSelection = -1;
 boolean waiting = false;
+int revealStartTime = 0; // Novo timer
 int cardWidth, cardHeight;
 int pairsFound = 0;
 int attempts = 0;
@@ -48,14 +48,12 @@ void initGame() {
   
   currentTheme = themes[currentThemeIndex];
   
-  // Criar pares de cartas
   char[] tempDeck = new char[totalCards];
   for (int i = 0; i < totalCards / 2; i++) {
     tempDeck[i*2] = currentTheme[i % currentTheme.length];
     tempDeck[i*2+1] = currentTheme[i % currentTheme.length];
   }
   
-  // Embaralhar
   for (int i = tempDeck.length - 1; i > 0; i--) {
     int j = (int)random(i + 1);
     char temp = tempDeck[i];
@@ -63,22 +61,16 @@ void initGame() {
     tempDeck[j] = temp;
   }
   
-  // Converter para deck de strings
   for (int i = 0; i < totalCards; i++) {
     deck[i] = str(tempDeck[i]);
-  }
-  
-  // Inicializar arrays
-  for (int i = 0; i < totalCards; i++) {
     revealed[i] = false;
     matched[i] = false;
   }
 }
 
 void draw() {
-  background(70, 130, 180); // Azul médio
-  
-  // Desenhar cartas
+  background(70, 130, 180);
+
   for (int i = 0; i < rows; i++) {
     for (int j = 0; j < cols; j++) {
       int index = i * cols + j;
@@ -86,49 +78,41 @@ void draw() {
       int y = i * cardHeight;
       
       if (matched[index]) {
-        fill(34, 139, 34); // Verde escuro para cartas combinadas
+        fill(34, 139, 34);
       } else if (revealed[index]) {
-        fill(255, 255, 255); // Branco para cartas reveladas
+        fill(255);
       } else {
-        fill(30, 144, 255); // Azul dodger para cartas não reveladas
+        fill(30, 144, 255);
       }
       
-      // Desenhar carta
       rect(x + 10, y + 10, cardWidth - 20, cardHeight - 20, 15);
       
-      // Desenhar letra se a carta estiver revelada ou combinada
       if (revealed[index] || matched[index]) {
         textAlign(CENTER, CENTER);
-        if (matched[index]) {
-          fill(255); // Texto branco para cartas combinadas
-        } else {
-          fill(0); // Texto preto para cartas reveladas
-        }
+        fill(matched[index] ? 255 : 0);
         textSize(min(cardWidth, cardHeight) * 0.6);
         text(deck[index], x + cardWidth/2, y + cardHeight/2);
       }
     }
   }
   
-  // Mostrar informações do jogo
   fill(255);
   textSize(20);
   textAlign(LEFT);
   text("Tentativas: " + attempts, 20, 30);
   text("Pares encontrados: " + pairsFound + "/" + (totalCards/2), 20, 60);
-  
-  // Mostrar tema atual
   text("Tema: " + themeNames[currentThemeIndex], 20, 90);
   
-  // Botão para mudar tema
   drawButton(width - 150, 20, 130, 30, "Mudar Tema", color(100, 200, 255));
-  
-  // Botão para reiniciar
   drawButton(width - 150, 60, 130, 30, "Reiniciar", color(255, 200, 100));
   
-  // Mensagem de vitória
   if (gameWon) {
     drawWinMessage();
+  }
+
+  // Espera para mostrar as duas cartas antes de verificar
+  if (waiting && millis() - revealStartTime > 800) {
+    checkMatch();
   }
 }
 
@@ -159,21 +143,19 @@ void mousePressed() {
     return;
   }
   
-  // Verificar clique nos botões
   if (mouseX > width - 150 && mouseX < width - 20) {
-    if (mouseY > 20 && mouseY < 50) { // Botão Mudar Tema
+    if (mouseY > 20 && mouseY < 50) {
       currentThemeIndex = (currentThemeIndex + 1) % themes.length;
       initGame();
       return;
-    } else if (mouseY > 60 && mouseY < 90) { // Botão Reiniciar
+    } else if (mouseY > 60 && mouseY < 90) {
       initGame();
       return;
     }
   }
-  
+
   if (waiting) return;
-  
-  // Verificar clique nas cartas
+
   int col = mouseX / cardWidth;
   int row = mouseY / cardHeight;
   
@@ -190,8 +172,7 @@ void mousePressed() {
       secondSelection = index;
       attempts++;
       waiting = true;
-      delay(500);
-      checkMatch();
+      revealStartTime = millis(); // Marca o tempo de revelação
     }
   }
 }
@@ -201,7 +182,6 @@ void checkMatch() {
     matched[firstSelection] = true;
     matched[secondSelection] = true;
     pairsFound++;
-    
     if (pairsFound == totalCards / 2) {
       gameWon = true;
     }
@@ -213,11 +193,4 @@ void checkMatch() {
   firstSelection = -1;
   secondSelection = -1;
   waiting = false;
-}
-
-void delay(int time) {
-  int current = millis();
-  while (millis() < current + time) {
-    // Espera
-  }
 }
