@@ -8,6 +8,10 @@ boolean gameOver = false;
 boolean upPressed, downPressed, wPressed, sPressed;
 String difficulty = "normal";
 
+int paddleSpeed = 6;
+int delayAfterWin = 180; // frames ~3 segundos
+int delayCounter = 0;
+
 void setup() {
   size(600, 400);
   setDifficulty(difficulty);
@@ -16,10 +20,20 @@ void setup() {
 
 void draw() {
   background(0);
+
   if (gameOver) {
     showWinner();
+    delayCounter++;
+    if (delayCounter >= delayAfterWin) {
+      player1Score = 0;
+      player2Score = 0;
+      gameOver = false;
+      delayCounter = 0;
+      resetGame();
+    }
     return;
   }
+
   drawPaddles();
   drawBall();
   drawScore();
@@ -49,7 +63,7 @@ void resetGame() {
   player2Y = height / 2 - paddleHeight / 2;
   ballX = width / 2;
   ballY = height / 2;
-  gameOver = false;
+  ballSpeedX *= random(1) < 0.5 ? 1 : -1; // bola vai pra lado aleatório
 }
 
 void drawPaddles() {
@@ -72,35 +86,36 @@ void drawScore() {
 void moveBall() {
   ballX += ballSpeedX;
   ballY += ballSpeedY;
-  
+
   if (ballY <= 0 || ballY >= height) {
     ballSpeedY *= -1;
   }
-  
+
   if (ballX <= 0) {
     player2Score++;
     checkWinner();
-    resetGame();
+    if (!gameOver) resetGame();
   } else if (ballX >= width) {
     player1Score++;
     checkWinner();
-    resetGame();
+    if (!gameOver) resetGame();
   }
 }
 
 void checkCollision() {
-  if (ballX <= 30 && ballY > player1Y && ballY < player1Y + paddleHeight) {
+  // Jogador 1
+  if (ballX <= 30 && ballY >= player1Y && ballY <= player1Y + paddleHeight) {
     ballSpeedX *= -1;
+    // opcional: add som aqui
   }
-  if (ballX >= width - 30 && ballY > player2Y && ballY < player2Y + paddleHeight) {
+  // Jogador 2
+  if (ballX >= width - 30 && ballY >= player2Y && ballY <= player2Y + paddleHeight) {
     ballSpeedX *= -1;
   }
 }
 
 void checkWinner() {
-  if (player1Score >= scoreLimit) {
-    gameOver = true;
-  } else if (player2Score >= scoreLimit) {
+  if (player1Score >= scoreLimit || player2Score >= scoreLimit) {
     gameOver = true;
   }
 }
@@ -114,24 +129,20 @@ void showWinner() {
   } else {
     text("Jogador 2 venceu!", width / 2, height / 2);
   }
-  textSize(20);
-  text("Pressione R para reiniciar", width / 2, height / 2 + 50);
-  text("Pressione 1 para fácil, 2 para normal, 3 para difícil", width / 2, height / 2 + 80);
+  textSize(16);
+  fill(255);
+  text("Reiniciando em 3 segundos...", width / 2, height / 2 + 40);
+  text("1: Fácil   2: Normal   3: Difícil", width / 2, height / 2 + 70);
 }
 
 void movePaddles() {
-  if (wPressed) player1Y -= 5;
-  if (sPressed) player1Y += 5;
-  if (upPressed) player2Y -= 5;
-  if (downPressed) player2Y += 5;
+  if (wPressed && player1Y > 0) player1Y -= paddleSpeed;
+  if (sPressed && player1Y + paddleHeight < height) player1Y += paddleSpeed;
+  if (upPressed && player2Y > 0) player2Y -= paddleSpeed;
+  if (downPressed && player2Y + paddleHeight < height) player2Y += paddleSpeed;
 }
 
 void keyPressed() {
-  if (key == 'r' || key == 'R') {
-    player1Score = 0;
-    player2Score = 0;
-    resetGame();
-  }
   if (key == '1') {
     difficulty = "easy";
     setDifficulty(difficulty);
@@ -146,6 +157,13 @@ void keyPressed() {
     difficulty = "hard";
     setDifficulty(difficulty);
     resetGame();
+  }
+  if (key == 'r' || key == 'R') {
+    player1Score = 0;
+    player2Score = 0;
+    resetGame();
+    gameOver = false;
+    delayCounter = 0;
   }
   if (key == 'w') wPressed = true;
   if (key == 's') sPressed = true;
